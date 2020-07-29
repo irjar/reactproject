@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
-
+import Register from './components/Register';
+import Login from './components/Login';
+import News from './components/News';
+import Navigation from './components/Navigation';
 import './App.css';
 
 class App extends Component {
@@ -41,10 +44,22 @@ class App extends Component {
   
 render() {
     return (
-      <div className="App">
-        <Header />
+			<BrowserRouter>
+			<div>
+			<div className="App">
+        
+
+		<Header />
+		<Navigation />
+		<Switch>
 		
-		
+		<Route path="/" component={Login} exact/>
+
+				<Route path="/Register" component={Register}/>
+					<Route path="/News" component={News}/>
+	
+	 		            		  </Switch>
+			 
         <p>{this.state.response}</p>
         <form onSubmit={this.handleSubmit}>
           <p>
@@ -58,7 +73,10 @@ render() {
           <button type="submit">Submit</button>
         </form>
         <p>{this.state.responseToPost}</p>
+
       </div>
+        </div> 
+      </BrowserRouter>
     );
   }
 }
