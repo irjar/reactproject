@@ -5,7 +5,7 @@ import React from 'react';
 function Header() {
     return(
             <div className="project-title">
-            <span className="h1">Dev Challenge</span>
+            <span className="h1">React Dashboard</span>
             </div>
     )
 }

@@ -49,7 +49,7 @@ function Register(props) {
 							<input type="file" className="form-control" name="userImage" 
 							id="registrationImage"  accept="image/gif, image/jpeg, image/png"	
 							multiple = "false" />
-{/*<label htmlFor="registrationImage" >Upload Image</label>*/}
+							{/*<label htmlFor="registrationImage" >Upload Image</label>*/}
 						 	<div className="addPicture">Add picture</div>
 						</label>
 					</div>

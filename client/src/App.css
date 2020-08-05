@@ -1,45 +1,109 @@
+/* Set style of the body element */
 .App {
-  text-align: center;
+	text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body{
+	height: 100%; /* Show the image to fill the page */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body{
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	display: block; margin: 0px; width: 100%;  height:100vh;
+	background-image: url("/images/Background.png");
+	background-repeat: no-repeat; /*appear only once */
+	background-position: center; /* Center the image */
+	background-size: cover; /* Resize the background image to cover the entire container */	
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  padding-bottom: 10px;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-
 
 .project-title {
-	margin-top: 20px; color: red;	font-size: 40px
+	margin-top: 20px; color: white;	font-size: 40px
+}
+
+
+/* Registration */
+
+
+/* Remove blue outline from input fields in the Registration form*/
+.form-control:focus{
+    border-color: #cccccc; -webkit-box-shadow: none; box-shadow: none;
+}
+
+/* Create two equal columns that floats next to each other to display input fields */
+.column {
+  float: left; width: 50%; padding: 10px;
+}
+
+
+/* Clear floats after the columns displaying input fields */
+.row:after {
+  content: ""; display: table; clear: both;
+}
+
+* Responsive layout - display the input fields stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+
+input[type=password], input[type=username], input[type=email]  {
+  border: none; background-color: transparent;
+  border-bottom: 1px solid #FFE65E; /*Yellow*/
+}
+
+/* Set the colour of placeholders on the Registration form to white*/
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white; opacity: 1; /* Firefox */
+}
+
+
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: white;
+}
+
+
+button.buttonRegister{
+  background-color: #FFE65E; /* Yellow */
+  border: none; color: black; font-weight: bold; padding: 14px 75px;
+  text-align: center; text-decoration: none; display: inline-block;
+  font-size: 14px; margin: 4px 2px;  cursor: pointer; border-radius: 20px;
+
+}
+
+
+/* Hide the default display of the file input type */
+input[type=file]{
+	visibility: hidden;
+}
+
+
+/* Set style of the Add image button on the Registration page*/
+.userPic {
+	display: inline-block; height: 100px; width: 200px; padding: 0;
+    margin: 10px; vertical-align: top; border: 3px solid; border-color: yellow; 
+	background-color: #FFE65E;  opacity: 0.5;
+}
+
+
+/* Place the image input field in a container so the text resizes correctly */
+.container{
+	position: relative; text-align: center; margin-top: 50px; 
+}
+
+
+.addPicture {
+	position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+	color: white; font-size: 14px
+}
+
+/* Set the height of the uploaded user's picture */
+#picOutput{
+	height: 100px
 }
