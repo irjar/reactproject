@@ -1,7 +1,57 @@
 import React, {useState} from 'react';
- 
+import axios from 'axios';
+import './Register.css';
+import {API_BASE_URL} from '../constants/api';
+import { withRouter } from "react-router-dom";
+
 {/* Create a registration form */}
 function Register(props) {
+	const [state , setState] = useState({ email : "", password : ""})
+	
+	const handleChange = (e) => {const {id , value} = e.target   
+		setState(prevState => ({...prevState,[id] : value }))
+    }
+	
+	const handleSubmitClick = (e) => {
+        e.preventDefault();
+        if(state.password === state.confirmPassword) {
+            sendDetailsToServer()    
+        } else {
+            props.showError('Passwords do not match');
+        }
+    }
+	
+	const sendDetailsToServer = () => {
+        if(state.email.length && state.password.length) {
+            props.showError(null);
+            const payload={"email":state.email, "password":state.password,}
+            axios.post(API_BASE_URL+'register', payload).then(function (response) {
+                    if(response.data.code === 200){
+                        setState(prevState => ({...prevState,
+                            'successMessage' : 'Registration successful. Redirecting to home page..'
+                        }))
+                        redirectToHome();
+                        props.showError(null)
+                    } else{
+                        props.showError("Some error ocurred");
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });    
+        } else {
+            props.showError('Please enter valid email and password')    
+        }
+        
+    }
+	
+  const redirectToHome = () => {
+        props.updateTitle('Login')
+        props.history.push('/home');
+    }
+	
+	
+	
 	return(
         <div className="container-fluid">
             <form className="form">
@@ -19,7 +69,7 @@ function Register(props) {
 						{/* Pass the state variable value in the value field of input. 
 						Update the value using handleChange() */}
 						<input type="email" className="form-control" id="email" 
-						placeholder="Email" 
+						placeholder="Email" value = {state.email} onChange={handleChange}
 						/>
 					</div>
 				</div>
@@ -29,7 +79,8 @@ function Register(props) {
 						{/* Pass the state variable value in the value field of input. 
 						Update the value using handleChange() */}
 						<input type="password" className="form-control" id="password" 
-						placeholder="Password" 
+						placeholder="Password" value={state.password}
+                        onChange={handleChange} 
 						 />
 					</div>
 					<div className="column right">
